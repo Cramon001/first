@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Redirecting from "../componets/Redirecting"; // Ensure this path is correct
 import lock from "./locks.png";
+import { useNavigate } from "react-router";
 
 function PolicyPage() {
   const [showModal, setShowModal] = useState(false);
