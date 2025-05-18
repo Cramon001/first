@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Warning from "../componets/warning.png";
 
-const SecurityCheck = ({ onClose }) => {
+const SecurityCheck = ({ onClose, onContinue }) => {
   return (
     <div className="fixed inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-[90%] max-w-md relative shadow-lg">
@@ -26,7 +26,10 @@ const SecurityCheck = ({ onClose }) => {
             </div>
           </div>
         </div>
-        <div className="items-center flex justify-center  my-4 bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-4 py-2 rounded hover:from-indigo-600 hover:to-purple-600 transition-colors cursor-pointer">
+        <div
+          onClick={onContinue}
+          className="items-center flex justify-center my-4 bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-4 py-2 rounded hover:from-indigo-600 hover:to-purple-600 transition-colors cursor-pointer"
+        >
           <button>I understood, continue</button>
         </div>
       </div>

