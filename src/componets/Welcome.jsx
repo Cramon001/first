@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FirstModal from "./FirstModal";
+
 import Loader from "./Loader";
 import Try from "./Try";
 import { useNavigate } from "react-router";
 
 const Welcome = () => {
+  const [title, setTitle] = useState("GuardPulse");
+
+  useEffect(() => {
+    const fetchTitle = async () => {
+      try {
+        const res = await fetch("https://lol-ep0y.onrender.com/title");
+        const data = await res.json();
+        if (data.title) setTitle(data.title);
+        console.log(data, "name");
+      } catch (err) {
+        console.error("Error fetching title:", err);
+      }
+    };
+
+    fetchTitle();
+  }, []);
+
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [showLoaderModal, setShowLoaderModal] = useState(false);
   const [showRetry, setShowRetry] = useState(false);
@@ -41,16 +59,27 @@ const Welcome = () => {
       <div className="absolute inset-0 z-[-2] h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]" />
 
       {/* Animated Header */}
+
+      <motion.h1
+        className="text-4xl font-bold"
+        initial={{ scale: 0.2, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          delay: 4.2,
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        }}
+      >
+        Welcome
+      </motion.h1>
       <motion.div
         className="flex items-center text-white z-10"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 4, duration: 0.8, ease: "easeOut" }}
       >
-        <h1 className="text-3xl font-bold">GuardPulse</h1>
-        <p className="ml-2 text-xl">
-          守护 <span className="font-semibold">脉搏</span>
-        </p>
+        <h1 className="text-3xl font-bold">{title}</h1>
       </motion.div>
 
       {/* Animated Welcome Text and Button */}
