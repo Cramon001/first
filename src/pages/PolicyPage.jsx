@@ -101,7 +101,20 @@ function PolicyPage() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="flex flex-col items-center mt-10 space-y-4"
         >
-          <img src={lock} alt="Lock icon" className="w-20 h-20" />
+          <motion.img
+            src={lock}
+            alt="Lock icon"
+            className="w-20 h-20"
+            animate={{
+              y: [0, -15, 0], // bounce up and down
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
+          />
           <p className="text-center text-lg font-medium">
             Your security is our top priority
           </p>
