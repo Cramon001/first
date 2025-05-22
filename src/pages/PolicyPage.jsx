@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Redirecting from "../componets/Redirecting";
-import lock from "./locks.png";
+import lock from "./iccc.png";
 import { useNavigate } from "react-router";
 
 function PolicyPage() {
@@ -39,7 +39,9 @@ function PolicyPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl font-bold">Agreement Policy and Safety</h1>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-violet-600 via-purple-700 to-black bg-clip-text text-transparent">
+            Agreement Policy and Safety
+          </h1>
           <p className="text-lg mt-2">
             Please review our policy and safety guidelines before proceeding.
           </p>
@@ -52,7 +54,7 @@ function PolicyPage() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="py-2">
-            <h1 className="collapse-title text-base font-semibold">
+            <h1 className="collapse-title text-base font-semibold bg-gradient-to-r from-violet-600 via-purple-700 to-black bg-clip-text text-transparent">
               1. User Agreement
             </h1>
             <div className="collapse-content text-sm my-1">
@@ -62,7 +64,7 @@ function PolicyPage() {
             </div>
           </div>
           <div className="py-2">
-            <h1 className="collapse-title text-base font-semibold">
+            <h1 className="collapse-title text-base font-semibold bg-gradient-to-r from-violet-600 via-purple-700 to-black bg-clip-text text-transparent">
               2. Security Measures
             </h1>
             <div className="collapse-content text-sm space-y-1">
@@ -74,7 +76,7 @@ function PolicyPage() {
             </div>
           </div>
           <div className="py-2">
-            <h1 className="collapse-title text-base font-semibold">
+            <h1 className="collapse-title text-base font-semibold bg-gradient-to-r from-violet-600 via-purple-700 to-black bg-clip-text text-transparent">
               3. Risk Disclosure
             </h1>
             <div className="collapse-content text-sm">
@@ -83,7 +85,7 @@ function PolicyPage() {
             </div>
           </div>
           <div className="py-2">
-            <h1 className="collapse-title text-base font-semibold">
+            <h1 className="collapse-title text-base font-semibold bg-gradient-to-r from-violet-600 via-purple-700 to-black bg-clip-text text-transparent">
               4. Privacy Policy
             </h1>
             <div className="collapse-content text-sm">

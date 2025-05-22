@@ -204,7 +204,7 @@ const Connect = () => {
                     />
                     <label
                       htmlFor={`input-${index}`}
-                      className="absolute left-6 top-3.5 text-[10px] text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500 peer-focus:font-semibold cursor-text"
+                      className="absolute left-6 top-3.5 text-[10px] text-gray-500 transition-all duration-200 ease-in-out peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500 peer-focus:font-semibold cursor-text"
                     >
                       Write Here
                     </label>
