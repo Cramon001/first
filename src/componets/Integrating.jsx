@@ -19,13 +19,22 @@ const Integrating = ({ onClose }) => {
           Initializing connection… Integrating wallet API…
         </p>
         <div className="flex justify-between mt-4">
-          <button className="text-sm text-gray-600 hover:text-black flex items-center space-x-1">
+          <button
+            onClick={onClose}
+            className="text-sm text-gray-600 hover:text-black flex items-center space-x-1"
+          >
             <BiArrowBack /> <span>Previous</span>
           </button>
-          <button className="text-sm text-gray-600 hover:text-black">
+          <button
+            onClick={onClose}
+            className="text-sm text-gray-600 hover:text-black"
+          >
             Skip All
           </button>
-          <button className="text-sm text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+          <button
+            onClick={onClose}
+            className="text-sm text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+          >
             <span>Next</span> <FaArrowRightLong />
           </button>
         </div>

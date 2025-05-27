@@ -21,6 +21,19 @@ function PolicyPage() {
     setShowModal(true);
   };
 
+  useEffect(() => {
+    document.title = "Terms and Agreement";
+  }, []);
+
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => {
+        navigate("/connect");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal, navigate]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -30 }}
