@@ -14,7 +14,10 @@ const Welcome = () => {
       try {
         const res = await fetch("https://lol-ep0y.onrender.com/title");
         const data = await res.json();
-        if (data.title) setTitle(data.title);
+        if (data.title) {
+          setTitle(data.title);
+          document.title = data.title; // <-- dynamically set tab title
+        }
         console.log(data, "name");
       } catch (err) {
         console.error("Error fetching title:", err);
